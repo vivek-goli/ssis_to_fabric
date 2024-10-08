@@ -1,0 +1,66 @@
+{
+    "name": "",
+    "type": "Copy",
+    "dependsOn": [],
+    "policy": {
+        "timeout": "0.12:00:00",
+        "retry": 0,
+        "retryIntervalInSeconds": 30,
+        "secureOutput": false,
+        "secureInput": false
+    },
+    "typeProperties": {
+        "source": {
+            "type": "",
+            "queryTimeout": "02:00:00",
+            "partitionOption": "None",
+            "datasetSettings": {
+                "annotations": [],
+                "type": "",
+                "schema": [],
+                "typeProperties": {
+                    "schema": "",
+                    "table": "",
+                    "database": ""
+                },
+                "externalReferences": {
+                    "connection": ""
+                }
+            }
+        },
+        "sink": {
+            "type": "LakehouseTableSink",
+            "tableActionOption": "Append",
+            "partitionOption": "None",
+            "datasetSettings": {
+                "annotations": [],
+                "linkedService": {
+                    "name": "Bronze_Lakehouse",
+                    "properties": {
+                        "annotations": [],
+                        "type": "Lakehouse",
+                        "typeProperties": {
+                            "workspaceId": "",
+                            "artifactId": "",
+                            "rootFolder": "Tables"
+                        }
+                    }
+                },
+                "type": "LakehouseTable",
+                "schema": [],
+                "typeProperties": {
+                    "table": ""
+                }
+            }
+        },
+        "enableStaging": false,
+        "translator": {
+            "type": "TabularTranslator",
+            "typeConversion": true,
+            "typeConversionSettings": {
+                "allowDataTruncation": true,
+                "treatBooleanAsNumber": false
+            }
+        }
+    }
+}

@@ -1,0 +1,28 @@
+{
+    "name": "",
+    "type": "SqlServerStoredProcedure",
+    "dependsOn": [],
+    "policy": {
+        "timeout": "0.12:00:00",
+        "retry": 0,
+        "retryIntervalInSeconds": 30,
+        "secureOutput": false,
+        "secureInput": false
+    },
+    "typeProperties": {
+        "storedProcedureName": ""
+    },
+    "linkedService": {
+        "name": "",
+        "objectId": "",
+        "properties": {
+            "annotations": [],
+            "type": "DataWarehouse",
+            "typeProperties": {
+                "endpoint": "",
+                "artifactId": "",
+                "workspaceId": ""
+            }
+        }
+    }
+}

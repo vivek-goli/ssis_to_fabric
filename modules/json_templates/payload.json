@@ -1,0 +1,13 @@
+{
+    "displayName": "",
+    "type": "DataPipeline",
+    "definition": {
+        "parts": [
+            {
+                "path": "pipeline.json",
+                "payload": "",
+                "payloadType": "InlineBase64"
+            }
+        ]
+    }
+}

@@ -1,0 +1,66 @@
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5014
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 380-840-231
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5014
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 380-840-231
+INFO:root:File received is Multiple-Dataflows.dtsx
+INFO:root:File saved in temp library
+INFO:root:Input details received
+INFO:werkzeug: * Detected change in 'c:\\Users\\VenkataVivekGoli\\Desktop\\ssis_to_fabric\\modules\\app.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 380-840-231
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5014
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 380-840-231
+2024-10-08 16:17:48,414 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5014
+2024-10-08 16:17:48,414 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2024-10-08 16:17:48,421 - werkzeug - INFO -  * Restarting with stat
+2024-10-08 16:17:48,902 - werkzeug - WARNING -  * Debugger is active!
+2024-10-08 16:17:48,919 - werkzeug - INFO -  * Debugger PIN: 380-840-231
+2024-10-08 16:18:59,815 - root - INFO - File received is Multiple-Dataflows.dtsx
+2024-10-08 16:18:59,815 - root - INFO - File saved in temp library
+2024-10-08 16:18:59,815 - root - INFO - Input details received
+2024-10-08 16:19:01,455 - root - INFO - Access token acquired
+2024-10-08 16:19:04,562 - root - INFO - Received the lakehouse id 0717e896-3f43-4721-af39-5c756634a689
+2024-10-08 16:19:06,372 - root - INFO - Received the warehouse id 84821c70-f689-4f53-91b8-2b5ad07ea1cd
+2024-10-08 16:19:18,793 - werkzeug - INFO - 127.0.0.1 - - [08/Oct/2024 16:19:18] "POST /migrate HTTP/1.1" 200 -
+2024-10-08 16:21:36,465 - werkzeug - INFO -  * Detected change in 'c:\\Users\\VenkataVivekGoli\\Desktop\\ssis_to_fabric\\modules\\ssis_fabric.py', reloading
+2024-10-08 16:21:36,576 - werkzeug - INFO -  * Restarting with stat
+2024-10-08 16:21:37,389 - werkzeug - WARNING -  * Debugger is active!
+2024-10-08 16:21:37,407 - werkzeug - INFO -  * Debugger PIN: 380-840-231
+2024-10-08 16:22:25,770 - werkzeug - INFO -  * Detected change in 'c:\\Users\\VenkataVivekGoli\\Desktop\\ssis_to_fabric\\modules\\ssis_fabric.py', reloading
+2024-10-08 16:22:25,852 - werkzeug - INFO -  * Restarting with stat
+2024-10-08 16:22:26,472 - werkzeug - WARNING -  * Debugger is active!
+2024-10-08 16:22:26,488 - werkzeug - INFO -  * Debugger PIN: 380-840-231
+2024-10-08 16:36:15,714 - werkzeug - INFO -  * Detected change in 'c:\\Users\\VenkataVivekGoli\\Desktop\\ssis_to_fabric\\modules\\ssis_fabric.py', reloading
+2024-10-08 16:36:15,804 - werkzeug - INFO -  * Restarting with stat
+2024-10-08 16:36:16,436 - werkzeug - WARNING -  * Debugger is active!
+2024-10-08 16:36:16,444 - werkzeug - INFO -  * Debugger PIN: 380-840-231
+2024-10-08 16:54:05,158 - werkzeug - INFO -  * Detected change in 'c:\\Users\\VenkataVivekGoli\\Desktop\\ssis_to_fabric\\modules\\ssis_fabric.py', reloading
+2024-10-08 16:54:05,240 - werkzeug - INFO -  * Restarting with stat
+2024-10-08 16:54:05,896 - werkzeug - WARNING -  * Debugger is active!
+2024-10-08 16:54:05,904 - werkzeug - INFO -  * Debugger PIN: 380-840-231
+2024-10-08 16:55:13,336 - werkzeug - INFO -  * Detected change in 'c:\\Users\\VenkataVivekGoli\\Desktop\\ssis_to_fabric\\modules\\ssis_fabric.py', reloading
+2024-10-08 16:55:13,434 - werkzeug - INFO -  * Restarting with stat
+2024-10-08 16:55:14,048 - werkzeug - WARNING -  * Debugger is active!
+2024-10-08 16:55:14,057 - werkzeug - INFO -  * Debugger PIN: 380-840-231
+2024-10-08 17:09:29,032 - werkzeug - INFO -  * Detected change in 'c:\\Users\\VenkataVivekGoli\\Desktop\\ssis_to_fabric\\modules\\ssis_fabric.py', reloading
+2024-10-08 17:09:29,117 - werkzeug - INFO -  * Restarting with stat
+2024-10-08 17:09:29,995 - werkzeug - WARNING -  * Debugger is active!
+2024-10-08 17:09:30,003 - werkzeug - INFO -  * Debugger PIN: 380-840-231
+2024-10-08 17:10:08,257 - werkzeug - INFO -  * Detected change in 'c:\\Users\\VenkataVivekGoli\\Desktop\\ssis_to_fabric\\modules\\ssis_fabric.py', reloading
+2024-10-08 17:10:08,345 - werkzeug - INFO -  * Restarting with stat
+2024-10-08 17:10:09,114 - werkzeug - WARNING -  * Debugger is active!
+2024-10-08 17:10:09,123 - werkzeug - INFO -  * Debugger PIN: 380-840-231

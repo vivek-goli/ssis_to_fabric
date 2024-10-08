@@ -1,0 +1,67 @@
+{
+    "name": "",
+    "type": "Copy",
+    "dependsOn": [],
+    "policy": {
+        "timeout": "0.12:00:00",
+        "retry": 0,
+        "retryIntervalInSeconds": 30,
+        "secureOutput": false,
+        "secureInput": false
+    },
+    "typeProperties": {
+        "source": {
+            "type": "",
+            "queryTimeout": "02:00:00",
+            "partitionOption": "None",
+            "datasetSettings": {
+                "annotations": [],
+                "type": "",
+                "schema": [],
+                "typeProperties": {
+                    "schema": "",
+                    "table": "",
+                    "database": ""
+                },
+                "externalReferences": {
+                    "connection": ""
+                }
+            }
+        },
+        "sink": {
+            "type": "DataWarehouseSink",
+            "allowCopyCommand": true,
+            "datasetSettings": {
+                "annotations": [],
+                "linkedService": {
+                    "name": "",
+                    "properties": {
+                        "annotations": [],
+                        "type": "DataWarehouse",
+                        "typeProperties": {
+                            "endpoint": "",
+                            "artifactId": "",
+                            "workspaceId": ""
+                        }
+                    }
+                },
+                "type": "DataWarehouseTable",
+                "schema": [],
+                "typeProperties": {
+                    "schema": "",
+                    "table": ""
+                }
+            }
+        },
+        "enableStaging": true,
+        "translator": {
+            "type": "TabularTranslator",
+            "mappings": [],
+            "typeConversion": true,
+            "typeConversionSettings": {
+                "allowDataTruncation": true,
+                "treatBooleanAsNumber": false
+            }
+        }
+    }
+}
