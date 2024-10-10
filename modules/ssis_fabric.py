@@ -46,7 +46,7 @@ class SSIS_Fabric:
             self.access_token = result["access_token"]
             logging.info("Access token acquired")
         except Exception as e:
-            logging.error(f"Function create_token(), Failed to acquire token.\nErr: {str(e)}")
+            logging.error(f"Function create_token(), Failed to acquire token.")
             raise
 
     def get_workspace_id(self):
@@ -59,7 +59,7 @@ class SSIS_Fabric:
                     self.workspace_id = value["id"]
                     logging.info(f"Received the workspace id {self.workspace_id}")
         except Exception as e:
-            logging.error(f"Function: get_workspace_id(), Failed to get workspace id.\nErr: {str(e)}")
+            logging.error(f"Function: get_workspace_id(), Failed to get workspace id.")
             raise
     
     def get_warehouse_id(self):
@@ -214,6 +214,7 @@ class SSIS_Fabric:
             return query
         except Exception as e:
             logging.error(f"Function: parse_merge(), Error writing the select statement for '{name}' component.")
+            raise
   
     @staticmethod
     def parse_lookup(dataflow, name, table1, columns): # returns the query required to join the two tables and create new table
@@ -234,7 +235,7 @@ class SSIS_Fabric:
             ref_cols = lookup.xpath(f"{lookup_output_path}/@name")
             datatypes = lookup.xpath(f"{lookup_output_path}/@dataType")
             logging.info(f"Input columns for {name} are {columns}")
-            logging.info(f"Referred columns from {name} are {ref_cols}")
+            logging.info(f"Referred columns in {name} are {ref_cols}")
         except Exception as e:
             logging.error(f"Function: parse_lookup(), Error in parsing '{name}' component for inputs and outputs.")
             raise
@@ -377,7 +378,7 @@ class SSIS_Fabric:
                     """
             return statement
         except Exception as e:
-            logging.error(f"Function: design_create_procedure(), Error in making the create procedure statement for {procedure_name}.")
+            logging.error(f"Function: design_create_procedure(), Error making the create procedure statement for {procedure_name}.")
             raise
 
     def design_create_table(self, table_name, columns, datatypes):
@@ -392,7 +393,7 @@ class SSIS_Fabric:
             logging.info(f"create table statement designed for table name {table_name}\n{query}")
             return query
         except Exception as e:
-            logging.error(f"Function: design_create_table(), Error is making the create table statement for {table_name}.")
+            logging.error(f"Function: design_create_table(), Error making the create table statement for {table_name}.")
             raise
 
     def create_warehouse_item_fabric(self, sql_query):
@@ -428,12 +429,12 @@ class SSIS_Fabric:
             with pyodbc.connect(conn_str) as conn:
                 with conn.cursor() as cursor:
                     for table in self.warehouse_items["tables"]:
-                        drop_table_query = f"DROP TABLE IF EXISTS {table};"
+                        drop_table_query = f"DROP TABLE IF EXISTS dbo.{table};"
                         cursor.execute(drop_table_query)
                         logging.info(f"Table '{table}' dropped successfully.")
                     
                     for procedure in self.warehouse_items["procedures"]:
-                        drop_procedure_query = f"DROP PROCEDURE IF EXISTS {procedure};"
+                        drop_procedure_query = f"DROP PROCEDURE IF EXISTS dbo.{procedure};"
                         cursor.execute(drop_procedure_query)
                         logging.info(f"Procedure '{procedure}' dropped successfully.")
                 
@@ -486,7 +487,7 @@ class SSIS_Fabric:
                 pipeline = json.load(file)
                 pipeline["displayName"] = pipeline_name
                 pipeline["definition"]["parts"][0]["payload"] = encoded_json
-                logging.info("Payload created for pipeline creation")
+                logging.info("payload created for API request")
                 file.seek(0)        
                 json.dump(pipeline, file, indent=4)
                 file.truncate()
@@ -502,16 +503,16 @@ class SSIS_Fabric:
                     "Authorization": f"Bearer {self.access_token}",
                     "Content-Type": "application/json"
                 }
+                
+                pipeline_payload = json.dumps(pipeline)  # Convert the loaded JSON into a string
+                response = requests.post(f"{SSIS_Fabric.api_base_url}workspaces/{self.workspace_id}/items", headers=headers, data=pipeline_payload)
+                
                 pipeline["displayName"] = ""
                 pipeline["definition"]["parts"][0]["payload"] = ""
                 file.seek(0)        
                 json.dump(pipeline, file, indent=4)
                 file.truncate()
                 logging.info("payload.json cleaned up")
-                
-                pipeline_payload = json.dumps(pipeline)  # Convert the loaded JSON into a string
-                response = requests.post(f"{SSIS_Fabric.api_base_url}workspaces/{self.workspace_id}/items", headers=headers, data=pipeline_payload)
-                
                 if response.status_code == 201:
                     logging.info(f"Pipeline created successfully\n{response.json()}")
                     return response.json()
@@ -554,7 +555,7 @@ class SSIS_Fabric:
             logging.info(f"Execution Flow Map: {self.flows}")
             logging.info(f"Dependency map: {self.dependency_map}")
         except Exception as e:
-            logging.error(f"Function: parse_dataflow(), Failed to create flow map / dependency map.")
+            logging.error(f"Function: parse_dataflow(), Failed to create flow map and dependency map.")
             raise
 
     # driving function 2
@@ -680,11 +681,7 @@ class SSIS_Fabric:
             executables_names = tree.xpath("//DTS:Executables/DTS:Executable/@DTS:ObjectName", namespaces=SSIS_Fabric.namespaces)
             logging.info(f"Executables: {executables_names}")
             n = len(pipeline_executables)
-        except Exception as e:
-            logging.error(f"Function: parse_ssis_pipeline(), Failed to parse .dtsx file to get executables.\nErr:{e}")
-            raise
 
-        try:
             for i in range(n):
                 exec_type = pipeline_executables[i].xpath("@DTS:ExecutableType", namespaces=SSIS_Fabric.namespaces)[0]
                 name = pipeline_executables[i].xpath("@DTS:ObjectName", namespaces=SSIS_Fabric.namespaces)[0]
@@ -702,7 +699,7 @@ class SSIS_Fabric:
                     self.executables[name] += [activity_name]
                     self.procedure_json(procedure_name, activity_name, self.executables[executables_names[i-1]])
                     logging.info(f"Procedure used in Execute SQL is {procedure_name}")
-                logging.info(f"Executables map: {self.executables}")
+                logging.info(f"Executables last activitites map: {self.executables}")
 
             with open(f"{config.TEMPLATES_FOLDER}pipeline.json", "r+") as file:
                 pipeline = json.load(file)
