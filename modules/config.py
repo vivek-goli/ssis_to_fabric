@@ -11,7 +11,7 @@ SCOPE = "https://api.fabric.microsoft.com/.default"
 AUTHORITY = "https://login.microsoftonline.com/"
 API_URL = "https://api.fabric.microsoft.com/v1/"
 USERNAME = "vivek.goli@kanerika.com"
-PASSWORD = "Vivek@16"
+PASSWORD = "Vivek@4517"
 NAMESPACE1 = "www.microsoft.com/SqlServer/Dts"
 NAMESPACE2 = "www.microsoft.com/sqlserver/dts/tasks/sqltask"
 

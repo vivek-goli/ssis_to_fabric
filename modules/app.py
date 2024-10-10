@@ -53,6 +53,8 @@ def migrate():
 
     except Exception as e:
         logging.error(f"Failed to migrate: {str(e)}")
+        if os.path.exists(dtsx_file_path):
+            os.remove(dtsx_file_path)
         obj.drop_warehouse_items_fabric()
         SSIS_Fabric.clean_pipeline()
         SSIS_Fabric.clean_payload()

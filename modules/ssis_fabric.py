@@ -621,7 +621,7 @@ class SSIS_Fabric:
                             query = query.replace("schema", "dbo")
                             procedure_name = f"Merge_{dest_table}"
                             procedure = self.design_create_procedure(procedure_name, dest_table, query)
-                            logging.info("Procedure: ", procedure)
+                            logging.info(f"Procedure: {procedure}")
                             self.create_warehouse_item_fabric(procedure)
                             activity1 = self.component_map[d1][3]
                             activity2 = self.component_map[d2][3]
@@ -654,7 +654,7 @@ class SSIS_Fabric:
                             procedure_name = f"Lookup_{dest_table}"
                             procedure = self.design_create_procedure(procedure_name, dest_table, query)
                             self.create_warehouse_item_fabric(procedure)
-                            logging.info("Procedure: ", procedure)
+                            logging.info(f"Procedure: {procedure}")
                             activity1 = self.component_map[dependency][3]
                             activity2 = copy_name
                             self.procedure_json(procedure_name, activity_name, [activity1, activity2])
@@ -670,7 +670,7 @@ class SSIS_Fabric:
             self.dependency_map = {}
             self.flows = {}
         except Exception as e:
-            logging(f"Function: parse_components(), Error in parsing the components.")
+            logging.error(f"Function: parse_components(), Error in parsing the components.")
             raise
 
     #driving function 1
