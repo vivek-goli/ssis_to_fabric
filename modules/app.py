@@ -32,6 +32,7 @@ def migrate():
         logging.info(f"File received is {dtsx_file.filename}")
         parent_dir = Path(__file__).resolve().parent.parent
         temp_dir = parent_dir / config.UPLOAD_FOLDER
+        
         dtsx_file_path = os.path.join(temp_dir, dtsx_file.filename)
         dtsx_file.save(dtsx_file_path)
         logging.info("File saved in temp library")
@@ -55,9 +56,12 @@ def migrate():
         logging.error(f"Failed to migrate: {str(e)}")
         if os.path.exists(dtsx_file_path):
             os.remove(dtsx_file_path)
+        
+        # clean up changes
         obj.drop_warehouse_items_fabric()
         SSIS_Fabric.clean_pipeline()
         SSIS_Fabric.clean_payload()
+        
         return jsonify({"message": f"Failed to migrate: {str(e)}"}), 500
 
 if __name__ == '__main__':
