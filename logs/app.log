@@ -345,3 +345,219 @@ CREATE TABLE APurchases (Purchase_ID INT, Product_ID INT, Quantity_Sold INT, Amo
 2024-10-10 12:14:31,366 - root - INFO - pipeline.json cleaned up
 2024-10-10 12:14:31,369 - root - INFO - payload.json cleaned up
 2024-10-10 12:14:31,374 - werkzeug - INFO - 127.0.0.1 - - [10/Oct/2024 12:14:31] "[35m[1mPOST /migrate HTTP/1.1[0m" 500 -
+2024-10-14 12:27:43,433 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5014
+2024-10-14 12:27:43,433 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2024-10-14 12:27:43,443 - werkzeug - INFO -  * Restarting with stat
+2024-10-14 12:27:44,006 - werkzeug - WARNING -  * Debugger is active!
+2024-10-14 12:27:44,022 - werkzeug - INFO -  * Debugger PIN: 380-840-231
+2024-10-14 12:28:18,862 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5014
+2024-10-14 12:28:18,862 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2024-10-14 12:28:18,872 - werkzeug - INFO -  * Restarting with stat
+2024-10-14 12:28:19,384 - werkzeug - WARNING -  * Debugger is active!
+2024-10-14 12:28:19,402 - werkzeug - INFO -  * Debugger PIN: 380-840-231
+2024-10-14 12:28:28,981 - root - INFO - File received is Multiple-Dataflows.dtsx
+2024-10-14 12:28:28,997 - root - INFO - File saved in temp library
+2024-10-14 12:28:28,997 - root - INFO - Input details received
+2024-10-14 12:28:31,052 - root - INFO - Access token acquired
+2024-10-14 12:28:33,405 - root - INFO - Received the workspace id 87a9f325-0a3f-40e3-954d-bdc5e25bd8b9
+2024-10-14 12:28:35,960 - root - INFO - Received the lakehouse id '0717e896-3f43-4721-af39-5c756634a689'
+2024-10-14 12:28:37,596 - root - INFO - Received the warehouse id 84821c70-f689-4f53-91b8-2b5ad07ea1cd
+2024-10-14 12:28:37,614 - root - INFO - Executables: ['Data Flow Task1', 'Data Flow Task2']
+2024-10-14 12:28:37,614 - root - INFO - Executable Data Flow Task1 is a Microsoft.Pipeline
+2024-10-14 12:28:37,620 - root - INFO - Parsing the executable Data Flow Task1
+2024-10-14 12:28:37,621 - root - INFO - Source_EmployeeContact columns : ['EmployeeID', 'PhoneNumber', 'Email'] dataypes: ['i4', 'wstr', 'wstr']
+2024-10-14 12:28:37,622 - root - INFO - Component map : {'Lookup': ['Microsoft.Lookup', False], 'OLE DB Destination': ['Microsoft.OLEDBDestination', False], 'OLE DB Source': ['Microsoft.OLEDBSource', False, 'Source_EmployeeContact']}
+2024-10-14 12:28:37,622 - root - INFO - Execution Flow Map: {'Lookup': [['OLE DB Destination', 'Microsoft.OLEDBDestination']], 'OLE DB Destination': [], 'OLE DB Source': [['Lookup', 'Microsoft.Lookup']]}
+2024-10-14 12:28:37,622 - root - INFO - Dependency map: {'Lookup': ['OLE DB Source'], 'OLE DB Destination': ['Lookup'], 'OLE DB Source': []}
+2024-10-14 12:28:37,622 - root - INFO - Source_EmployeeContact columns : ['EmployeeID', 'PhoneNumber', 'Email'] dataypes: ['i4', 'wstr', 'wstr']
+2024-10-14 12:28:37,626 - root - INFO - create table statement designed for table name Source_EmployeeContact
+CREATE TABLE Source_EmployeeContact (EmployeeID INT, PhoneNumber VARCHAR(100), Email VARCHAR(100));
+2024-10-14 12:28:43,225 - root - INFO - Table/Procedure created successfully.
+2024-10-14 12:28:43,279 - root - INFO - JSON for CopyActivity1 created and added to pipeline.json
+2024-10-14 12:28:43,283 - root - INFO - Input columns for Lookup are ['EmployeeID', 'PhoneNumber', 'Email']
+2024-10-14 12:28:43,283 - root - INFO - Referred columns in Lookup are ['FirstName', 'LastName', 'Department']
+2024-10-14 12:28:43,283 - root - INFO - create table statement designed for table name Source_EmployeeInfo
+CREATE TABLE Source_EmployeeInfo (EmployeeID INT, FirstName VARCHAR(100), LastName VARCHAR(100), Department VARCHAR(100));
+2024-10-14 12:28:43,688 - root - INFO - Table/Procedure created successfully.
+2024-10-14 12:28:43,729 - root - INFO - JSON for CopyActivity2 created and added to pipeline.json
+2024-10-14 12:28:43,884 - root - INFO - Table/Procedure created successfully.
+2024-10-14 12:28:43,926 - root - INFO - Procedure: 
+                        CREATE PROCEDURE Lookup_Source_Employee AS
+                        BEGIN
+                            IF OBJECT_ID('Source_Employee', 'U') IS NOT NULL
+                            BEGIN
+                                DROP TABLE Source_Employee;
+                            END
+                            CREATE TABLE Source_Employee AS
+                            SELECT t1.EmployeeID, t1.PhoneNumber, t1.Email, t2.FirstName AS FirstName, t2.LastName AS LastName, t2.Department AS Department FROM dbo.Source_EmployeeContact AS t1 JOIN dbo.Source_EmployeeInfo AS t2 ON t1.EmployeeID = t2.EmployeeID
+                        END;
+                    
+2024-10-14 12:28:43,945 - root - INFO - JSON for StoredProcedure1 created successfully.
+2024-10-14 12:28:43,946 - root - INFO - Component OLE DB Source is parsed
+2024-10-14 12:28:43,949 - root - INFO - Component Lookup is parsed
+2024-10-14 12:28:43,949 - root - INFO - Component OLE DB Destination is parsed
+2024-10-14 12:28:43,949 - root - INFO - Component OLE DB Source is parsed
+2024-10-14 12:28:43,949 - root - INFO - Resultant component map {'Lookup': ['Microsoft.Lookup', True, 'StoredProcedure1'], 'OLE DB Destination': ['Microsoft.OLEDBDestination', True], 'OLE DB Source': ['Microsoft.OLEDBSource', True, 'Source_EmployeeContact', 'CopyActivity1']}
+2024-10-14 12:28:43,949 - root - INFO - Executables last activitites map: {'Data Flow Task1': ['StoredProcedure1']}
+2024-10-14 12:28:43,949 - root - INFO - Executable Data Flow Task2 is a Microsoft.Pipeline
+2024-10-14 12:28:43,949 - root - INFO - Parsing the executable Data Flow Task2
+2024-10-14 12:28:43,957 - root - INFO - AProduct columns : ['Product_ID', 'Product_Name', 'Category'] dataypes: ['i4', 'str', 'str']
+2024-10-14 12:28:43,957 - root - INFO - APurchases columns : ['Purchase_ID', 'Product_ID', 'Quantity_Sold', 'Amount'] dataypes: ['i4', 'i4', 'i4', 'numeric']
+2024-10-14 12:28:43,961 - root - INFO - Component map : {'Merge Join': ['Microsoft.MergeJoin', False], 'OLE DB Destination': ['Microsoft.OLEDBDestination', False], 'Products': ['Microsoft.OLEDBSource', False, 'AProduct'], 'Purchases': ['Microsoft.OLEDBSource', False, 'APurchases'], 'Sort': ['Microsoft.Sort', False], 'Sort 1': ['Microsoft.Sort', False]}
+2024-10-14 12:28:43,965 - root - INFO - Execution Flow Map: {'Merge Join': [['OLE DB Destination', 'Microsoft.OLEDBDestination']], 'OLE DB Destination': [], 'Products': [['Sort 1', 'Microsoft.Sort']], 'Purchases': [['Sort', 'Microsoft.Sort']], 'Sort': [['Merge Join', 'Microsoft.MergeJoin']], 'Sort 1': [['Merge Join', 'Microsoft.MergeJoin']]}
+2024-10-14 12:28:43,965 - root - INFO - Dependency map: {'Merge Join': ['Sort', 'Sort 1'], 'OLE DB Destination': ['Merge Join'], 'Products': [], 'Purchases': [], 'Sort': ['Purchases'], 'Sort 1': ['Products']}
+2024-10-14 12:28:43,965 - root - INFO - AProduct columns : ['Product_ID', 'Product_Name', 'Category'] dataypes: ['i4', 'str', 'str']
+2024-10-14 12:28:43,973 - root - INFO - create table statement designed for table name AProduct
+CREATE TABLE AProduct (Product_ID INT, Product_Name VARCHAR(100), Category VARCHAR(100));
+2024-10-14 12:28:44,417 - root - INFO - Table/Procedure created successfully.
+2024-10-14 12:28:44,470 - root - INFO - JSON for CopyActivity3 created and added to pipeline.json
+2024-10-14 12:28:44,470 - root - INFO - APurchases columns : ['Purchase_ID', 'Product_ID', 'Quantity_Sold', 'Amount'] dataypes: ['i4', 'i4', 'i4', 'numeric']
+2024-10-14 12:28:44,470 - root - INFO - create table statement designed for table name APurchases
+CREATE TABLE APurchases (Purchase_ID INT, Product_ID INT, Quantity_Sold INT, Amount DECIMAL(38,2));
+2024-10-14 12:28:44,912 - root - INFO - Table/Procedure created successfully.
+2024-10-14 12:28:44,960 - root - INFO - JSON for CopyActivity4 created and added to pipeline.json
+2024-10-14 12:28:44,962 - root - INFO - Left Input columns for Merge Join are ['Product_ID', 'Purchase_ID', 'Quantity_Sold', 'Amount'] sorted as {1: 'Product_ID'}
+2024-10-14 12:28:44,966 - root - INFO - Right Input columns for Merge Join are ['Product_ID', 'Product_Name', 'Category'] sorted as {1: 'Product_ID'}
+2024-10-14 12:28:44,966 - root - INFO - Output columns from Merge Join are ['Purchase_ID', 'Product_ID', 'Product_Name', 'Category', 'Quantity_Sold', 'Amount']
+2024-10-14 12:28:44,970 - root - INFO - Procedure: 
+                        CREATE PROCEDURE Merge_APurchasesFlow2 AS
+                        BEGIN
+                            IF OBJECT_ID('APurchasesFlow2', 'U') IS NOT NULL
+                            BEGIN
+                                DROP TABLE APurchasesFlow2;
+                            END
+                            CREATE TABLE APurchasesFlow2 AS
+                            SELECT t1.Purchase_ID AS Purchase_ID, t1.Product_ID AS Product_ID, t2.Product_Name AS Product_Name, t2.Category AS Category, t1.Quantity_Sold AS Quantity_Sold, t1.Amount AS Amount FROM dbo.APurchases AS t1 INNER JOIN dbo.AProduct AS t2 ON t1.Product_ID = t2.Product_ID;
+                        END;
+                    
+2024-10-14 12:28:45,086 - root - INFO - Table/Procedure created successfully.
+2024-10-14 12:28:45,132 - root - INFO - JSON for StoredProcedure2 created successfully.
+2024-10-14 12:28:45,132 - root - INFO - Component Products is parsed
+2024-10-14 12:28:45,132 - root - INFO - Component Purchases is parsed
+2024-10-14 12:28:45,132 - root - INFO - Component Sort is parsed
+2024-10-14 12:28:45,132 - root - INFO - Component Sort 1 is parsed
+2024-10-14 12:28:45,141 - root - INFO - Component Merge Join is parsed
+2024-10-14 12:28:45,141 - root - INFO - Component OLE DB Destination is parsed
+2024-10-14 12:28:45,141 - root - INFO - Component Products is parsed
+2024-10-14 12:28:45,141 - root - INFO - Component Purchases is parsed
+2024-10-14 12:28:45,141 - root - INFO - Component Sort is parsed
+2024-10-14 12:28:45,141 - root - INFO - Component Sort 1 is parsed
+2024-10-14 12:28:45,141 - root - INFO - Resultant component map {'Merge Join': ['Microsoft.MergeJoin', True, 'StoredProcedure2'], 'OLE DB Destination': ['Microsoft.OLEDBDestination', True], 'Products': ['Microsoft.OLEDBSource', True, 'AProduct', 'CopyActivity3'], 'Purchases': ['Microsoft.OLEDBSource', True, 'APurchases', 'CopyActivity4'], 'Sort': ['Microsoft.Sort', True, 'APurchases', 'CopyActivity4'], 'Sort 1': ['Microsoft.Sort', True, 'AProduct', 'CopyActivity3']}
+2024-10-14 12:28:45,141 - root - INFO - Executables last activitites map: {'Data Flow Task1': ['StoredProcedure1'], 'Data Flow Task2': ['StoredProcedure2']}
+2024-10-14 12:28:45,141 - root - INFO - Added pipeline name to pipeline.json
+2024-10-14 12:28:45,152 - root - INFO - Encoded pipeline.json into base64 format
+2024-10-14 12:28:45,153 - root - INFO - pipeline.json cleaned up
+2024-10-14 12:28:45,158 - root - INFO - payload created for API request
+2024-10-14 12:28:46,310 - root - INFO - payload.json cleaned up
+2024-10-14 12:28:46,310 - root - INFO - Failed to create pipeline
+{'requestId': 'a1c415db-60aa-4aff-9cfb-49f92a717d93', 'errorCode': 'ItemDisplayNameAlreadyInUse', 'message': "Requested '2-dataflows' is already in use"}
+2024-10-14 12:28:46,310 - root - ERROR - Function create_pipeline(), Error creating the pipeline
+2024-10-14 12:28:46,316 - root - ERROR - Failed to migrate: Failed to create pipeline. Status code: 400, Response: {'requestId': 'a1c415db-60aa-4aff-9cfb-49f92a717d93', 'errorCode': 'ItemDisplayNameAlreadyInUse', 'message': "Requested '2-dataflows' is already in use"}
+2024-10-14 12:28:46,497 - root - INFO - Table 'Source_EmployeeContact' dropped successfully.
+2024-10-14 12:28:46,597 - root - INFO - Table 'Source_EmployeeInfo' dropped successfully.
+2024-10-14 12:28:46,686 - root - INFO - Table 'AProduct' dropped successfully.
+2024-10-14 12:28:46,783 - root - INFO - Table 'APurchases' dropped successfully.
+2024-10-14 12:28:46,829 - root - INFO - Procedure 'Lookup_Source_Employee' dropped successfully.
+2024-10-14 12:28:46,867 - root - INFO - Procedure 'Merge_APurchasesFlow2' dropped successfully.
+2024-10-14 12:28:46,948 - root - INFO - pipeline.json cleaned up
+2024-10-14 12:28:46,956 - root - INFO - payload.json cleaned up
+2024-10-14 12:28:46,956 - werkzeug - INFO - 127.0.0.1 - - [14/Oct/2024 12:28:46] "[35m[1mPOST /migrate HTTP/1.1[0m" 500 -
+2024-10-14 12:31:14,587 - root - INFO - File received is Multiple-Dataflows.dtsx
+2024-10-14 12:31:14,587 - root - INFO - File saved in temp library
+2024-10-14 12:31:14,587 - root - INFO - Input details received
+2024-10-14 12:31:33,006 - root - INFO - Access token acquired
+2024-10-14 12:31:34,544 - root - INFO - Received the workspace id 87a9f325-0a3f-40e3-954d-bdc5e25bd8b9
+2024-10-14 12:31:36,160 - root - INFO - Received the lakehouse id '0717e896-3f43-4721-af39-5c756634a689'
+2024-10-14 12:31:37,264 - root - INFO - Received the warehouse id 84821c70-f689-4f53-91b8-2b5ad07ea1cd
+2024-10-14 12:31:37,272 - root - INFO - Executables: ['Data Flow Task1', 'Data Flow Task2']
+2024-10-14 12:31:37,280 - root - INFO - Executable Data Flow Task1 is a Microsoft.Pipeline
+2024-10-14 12:31:37,280 - root - INFO - Parsing the executable Data Flow Task1
+2024-10-14 12:31:37,282 - root - INFO - Source_EmployeeContact columns : ['EmployeeID', 'PhoneNumber', 'Email'] dataypes: ['i4', 'wstr', 'wstr']
+2024-10-14 12:31:37,282 - root - INFO - Component map : {'Lookup': ['Microsoft.Lookup', False], 'OLE DB Destination': ['Microsoft.OLEDBDestination', False], 'OLE DB Source': ['Microsoft.OLEDBSource', False, 'Source_EmployeeContact']}
+2024-10-14 12:31:37,282 - root - INFO - Execution Flow Map: {'Lookup': [['OLE DB Destination', 'Microsoft.OLEDBDestination']], 'OLE DB Destination': [], 'OLE DB Source': [['Lookup', 'Microsoft.Lookup']]}
+2024-10-14 12:31:37,286 - root - INFO - Dependency map: {'Lookup': ['OLE DB Source'], 'OLE DB Destination': ['Lookup'], 'OLE DB Source': []}
+2024-10-14 12:31:37,286 - root - INFO - Source_EmployeeContact columns : ['EmployeeID', 'PhoneNumber', 'Email'] dataypes: ['i4', 'wstr', 'wstr']
+2024-10-14 12:31:37,286 - root - INFO - create table statement designed for table name Source_EmployeeContact
+CREATE TABLE Source_EmployeeContact (EmployeeID INT, PhoneNumber VARCHAR(100), Email VARCHAR(100));
+2024-10-14 12:31:39,922 - root - INFO - Table/Procedure created successfully.
+2024-10-14 12:31:39,963 - root - INFO - JSON for CopyActivity1 created and added to pipeline.json
+2024-10-14 12:31:39,963 - root - INFO - Input columns for Lookup are ['EmployeeID', 'PhoneNumber', 'Email']
+2024-10-14 12:31:39,963 - root - INFO - Referred columns in Lookup are ['FirstName', 'LastName', 'Department']
+2024-10-14 12:31:39,971 - root - INFO - create table statement designed for table name Source_EmployeeInfo
+CREATE TABLE Source_EmployeeInfo (EmployeeID INT, FirstName VARCHAR(100), LastName VARCHAR(100), Department VARCHAR(100));
+2024-10-14 12:31:40,334 - root - INFO - Table/Procedure created successfully.
+2024-10-14 12:31:40,368 - root - INFO - JSON for CopyActivity2 created and added to pipeline.json
+2024-10-14 12:31:40,487 - root - INFO - Table/Procedure created successfully.
+2024-10-14 12:31:40,522 - root - INFO - Procedure: 
+                        CREATE PROCEDURE Lookup_Source_Employee AS
+                        BEGIN
+                            IF OBJECT_ID('Source_Employee', 'U') IS NOT NULL
+                            BEGIN
+                                DROP TABLE Source_Employee;
+                            END
+                            CREATE TABLE Source_Employee AS
+                            SELECT t1.EmployeeID, t1.PhoneNumber, t1.Email, t2.FirstName AS FirstName, t2.LastName AS LastName, t2.Department AS Department FROM dbo.Source_EmployeeContact AS t1 JOIN dbo.Source_EmployeeInfo AS t2 ON t1.EmployeeID = t2.EmployeeID
+                        END;
+                    
+2024-10-14 12:31:40,535 - root - INFO - JSON for StoredProcedure1 created successfully.
+2024-10-14 12:31:40,535 - root - INFO - Component OLE DB Source is parsed
+2024-10-14 12:31:40,535 - root - INFO - Component Lookup is parsed
+2024-10-14 12:31:40,540 - root - INFO - Component OLE DB Destination is parsed
+2024-10-14 12:31:40,540 - root - INFO - Component OLE DB Source is parsed
+2024-10-14 12:31:40,540 - root - INFO - Resultant component map {'Lookup': ['Microsoft.Lookup', True, 'StoredProcedure1'], 'OLE DB Destination': ['Microsoft.OLEDBDestination', True], 'OLE DB Source': ['Microsoft.OLEDBSource', True, 'Source_EmployeeContact', 'CopyActivity1']}
+2024-10-14 12:31:40,540 - root - INFO - Executables last activitites map: {'Data Flow Task1': ['StoredProcedure1']}
+2024-10-14 12:31:40,540 - root - INFO - Executable Data Flow Task2 is a Microsoft.Pipeline
+2024-10-14 12:31:40,540 - root - INFO - Parsing the executable Data Flow Task2
+2024-10-14 12:31:40,548 - root - INFO - AProduct columns : ['Product_ID', 'Product_Name', 'Category'] dataypes: ['i4', 'str', 'str']
+2024-10-14 12:31:40,548 - root - INFO - APurchases columns : ['Purchase_ID', 'Product_ID', 'Quantity_Sold', 'Amount'] dataypes: ['i4', 'i4', 'i4', 'numeric']
+2024-10-14 12:31:40,551 - root - INFO - Component map : {'Merge Join': ['Microsoft.MergeJoin', False], 'OLE DB Destination': ['Microsoft.OLEDBDestination', False], 'Products': ['Microsoft.OLEDBSource', False, 'AProduct'], 'Purchases': ['Microsoft.OLEDBSource', False, 'APurchases'], 'Sort': ['Microsoft.Sort', False], 'Sort 1': ['Microsoft.Sort', False]}
+2024-10-14 12:31:40,555 - root - INFO - Execution Flow Map: {'Merge Join': [['OLE DB Destination', 'Microsoft.OLEDBDestination']], 'OLE DB Destination': [], 'Products': [['Sort 1', 'Microsoft.Sort']], 'Purchases': [['Sort', 'Microsoft.Sort']], 'Sort': [['Merge Join', 'Microsoft.MergeJoin']], 'Sort 1': [['Merge Join', 'Microsoft.MergeJoin']]}
+2024-10-14 12:31:40,556 - root - INFO - Dependency map: {'Merge Join': ['Sort', 'Sort 1'], 'OLE DB Destination': ['Merge Join'], 'Products': [], 'Purchases': [], 'Sort': ['Purchases'], 'Sort 1': ['Products']}
+2024-10-14 12:31:40,558 - root - INFO - AProduct columns : ['Product_ID', 'Product_Name', 'Category'] dataypes: ['i4', 'str', 'str']
+2024-10-14 12:31:40,558 - root - INFO - create table statement designed for table name AProduct
+CREATE TABLE AProduct (Product_ID INT, Product_Name VARCHAR(100), Category VARCHAR(100));
+2024-10-14 12:31:40,949 - root - INFO - Table/Procedure created successfully.
+2024-10-14 12:31:40,995 - root - INFO - JSON for CopyActivity3 created and added to pipeline.json
+2024-10-14 12:31:40,997 - root - INFO - APurchases columns : ['Purchase_ID', 'Product_ID', 'Quantity_Sold', 'Amount'] dataypes: ['i4', 'i4', 'i4', 'numeric']
+2024-10-14 12:31:41,000 - root - INFO - create table statement designed for table name APurchases
+CREATE TABLE APurchases (Purchase_ID INT, Product_ID INT, Quantity_Sold INT, Amount DECIMAL(38,2));
+2024-10-14 12:31:41,342 - root - INFO - Table/Procedure created successfully.
+2024-10-14 12:31:41,381 - root - INFO - JSON for CopyActivity4 created and added to pipeline.json
+2024-10-14 12:31:41,384 - root - INFO - Left Input columns for Merge Join are ['Product_ID', 'Purchase_ID', 'Quantity_Sold', 'Amount'] sorted as {1: 'Product_ID'}
+2024-10-14 12:31:41,384 - root - INFO - Right Input columns for Merge Join are ['Product_ID', 'Product_Name', 'Category'] sorted as {1: 'Product_ID'}
+2024-10-14 12:31:41,384 - root - INFO - Output columns from Merge Join are ['Purchase_ID', 'Product_ID', 'Product_Name', 'Category', 'Quantity_Sold', 'Amount']
+2024-10-14 12:31:41,384 - root - INFO - Procedure: 
+                        CREATE PROCEDURE Merge_APurchasesFlow2 AS
+                        BEGIN
+                            IF OBJECT_ID('APurchasesFlow2', 'U') IS NOT NULL
+                            BEGIN
+                                DROP TABLE APurchasesFlow2;
+                            END
+                            CREATE TABLE APurchasesFlow2 AS
+                            SELECT t1.Purchase_ID AS Purchase_ID, t1.Product_ID AS Product_ID, t2.Product_Name AS Product_Name, t2.Category AS Category, t1.Quantity_Sold AS Quantity_Sold, t1.Amount AS Amount FROM dbo.APurchases AS t1 INNER JOIN dbo.AProduct AS t2 ON t1.Product_ID = t2.Product_ID;
+                        END;
+                    
+2024-10-14 12:31:41,495 - root - INFO - Table/Procedure created successfully.
+2024-10-14 12:31:41,538 - root - INFO - JSON for StoredProcedure2 created successfully.
+2024-10-14 12:31:41,538 - root - INFO - Component Products is parsed
+2024-10-14 12:31:41,538 - root - INFO - Component Purchases is parsed
+2024-10-14 12:31:41,538 - root - INFO - Component Sort is parsed
+2024-10-14 12:31:41,543 - root - INFO - Component Sort 1 is parsed
+2024-10-14 12:31:41,543 - root - INFO - Component Merge Join is parsed
+2024-10-14 12:31:41,546 - root - INFO - Component OLE DB Destination is parsed
+2024-10-14 12:31:41,546 - root - INFO - Component Products is parsed
+2024-10-14 12:31:41,547 - root - INFO - Component Purchases is parsed
+2024-10-14 12:31:41,547 - root - INFO - Component Sort is parsed
+2024-10-14 12:31:41,547 - root - INFO - Component Sort 1 is parsed
+2024-10-14 12:31:41,547 - root - INFO - Resultant component map {'Merge Join': ['Microsoft.MergeJoin', True, 'StoredProcedure2'], 'OLE DB Destination': ['Microsoft.OLEDBDestination', True], 'Products': ['Microsoft.OLEDBSource', True, 'AProduct', 'CopyActivity3'], 'Purchases': ['Microsoft.OLEDBSource', True, 'APurchases', 'CopyActivity4'], 'Sort': ['Microsoft.Sort', True, 'APurchases', 'CopyActivity4'], 'Sort 1': ['Microsoft.Sort', True, 'AProduct', 'CopyActivity3']}
+2024-10-14 12:31:41,553 - root - INFO - Executables last activitites map: {'Data Flow Task1': ['StoredProcedure1'], 'Data Flow Task2': ['StoredProcedure2']}
+2024-10-14 12:31:41,554 - root - INFO - Added pipeline name to pipeline.json
+2024-10-14 12:31:41,561 - root - INFO - Encoded pipeline.json into base64 format
+2024-10-14 12:31:41,563 - root - INFO - pipeline.json cleaned up
+2024-10-14 12:31:41,567 - root - INFO - payload created for API request
+2024-10-14 12:31:46,320 - root - INFO - payload.json cleaned up
+2024-10-14 12:31:46,320 - root - INFO - Pipeline created successfully
+{'id': '0e516416-e112-4a14-9d7f-c4586ee7e798', 'type': 'DataPipeline', 'displayName': 'multi-dataflows', 'description': '', 'workspaceId': '87a9f325-0a3f-40e3-954d-bdc5e25bd8b9'}
+2024-10-14 12:31:46,336 - werkzeug - INFO - 127.0.0.1 - - [14/Oct/2024 12:31:46] "POST /migrate HTTP/1.1" 200 -

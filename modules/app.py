@@ -57,7 +57,7 @@ def migrate():
         if os.path.exists(dtsx_file_path):
             os.remove(dtsx_file_path)
         
-        # clean up changes
+        # clean up changes made till now
         obj.drop_warehouse_items_fabric()
         SSIS_Fabric.clean_pipeline()
         SSIS_Fabric.clean_payload()
